@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqwmexc6hdhxe"]
+
+[ext_resource type="PackedScene" uid="uid://drfrklb374g54" path="res://obstacles/CircleObstacle.tscn" id="1_bi5a5"]
+[ext_resource type="Script" path="res://obstacles/CircleObstablesRow.gd" id="1_ylbvs"]
+
+[node name="Row" type="Node2D"]
+position = Vector2(2.08165e-12, 400)
+script = ExtResource("1_ylbvs")
+metadata/_edit_vertical_guides_ = [85.0]
+
+[node name="CircleObstacle" parent="." instance=ExtResource("1_bi5a5")]
+position = Vector2(125, 2.08165e-12)
+scale = Vector2(4, 4)
+
+[node name="CircleObstacle2" parent="." instance=ExtResource("1_bi5a5")]
+position = Vector2(374, 2.08165e-12)
+scale = Vector2(4, 4)
+
+[node name="CircleObstacle3" parent="." instance=ExtResource("1_bi5a5")]
+position = Vector2(625, 2.08165e-12)
+scale = Vector2(4, 4)
+
+[node name="CircleObstacle4" parent="." instance=ExtResource("1_bi5a5")]
+position = Vector2(850, 2.08165e-12)
+scale = Vector2(4, 4)

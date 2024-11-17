@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://drfrklb374g54"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_s0esj"]
+
+[sub_resource type="Gradient" id="Gradient_ixdwr"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8f4bw"]
+gradient = SubResource("Gradient_ixdwr")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_64qgr"]
+
+[node name="CircleObstacle" type="StaticBody2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(19.92, 19.92)
+mesh = SubResource("SphereMesh_s0esj")
+texture = SubResource("GradientTexture2D_8f4bw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_64qgr")

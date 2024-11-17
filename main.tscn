@@ -1,0 +1,184 @@
+[gd_scene load_steps=15 format=3 uid="uid://cjvch2wr25hj1"]
+
+[ext_resource type="Script" path="res://Game.gd" id="1_ybg4t"]
+[ext_resource type="PackedScene" uid="uid://dv5m7ng4mqfn7" path="res://wall.tscn" id="2_dloae"]
+[ext_resource type="Script" path="res://PlayerModel.gd" id="2_ulpft"]
+[ext_resource type="PackedScene" uid="uid://drfrklb374g54" path="res://obstacles/CircleObstacle.tscn" id="4_jhk6q"]
+[ext_resource type="PackedScene" uid="uid://dg6hrgxim2qho" path="res://obstacles/hole.tscn" id="5_x8m32"]
+
+[sub_resource type="Resource" id="Resource_nqw7d"]
+script = ExtResource("2_ulpft")
+name = "Jose"
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_1u64c"]
+script = ExtResource("2_ulpft")
+name = "Fio"
+color = Color(0.603825, 0.17646, 0.549045, 1)
+
+[sub_resource type="Resource" id="Resource_pswvy"]
+script = ExtResource("2_ulpft")
+name = "Manu"
+color = Color(0.144895, 0.536499, 0.277864, 1)
+
+[sub_resource type="Resource" id="Resource_sfruq"]
+script = ExtResource("2_ulpft")
+name = "Claudio"
+color = Color(0.863337, 0.477569, 0.0994521, 1)
+
+[sub_resource type="Resource" id="Resource_t7okk"]
+script = ExtResource("2_ulpft")
+name = "Javi"
+color = Color(0.843681, 0.931822, 3.51793e-07, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qdi5v"]
+friction = 0.0
+rough = true
+absorbent = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_6231d"]
+
+[sub_resource type="Gradient" id="Gradient_bgvcn"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fl5vr"]
+gradient = SubResource("Gradient_bgvcn")
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ybg4t")
+players = Array[ExtResource("2_ulpft")]([SubResource("Resource_nqw7d"), SubResource("Resource_1u64c"), SubResource("Resource_pswvy"), SubResource("Resource_sfruq"), SubResource("Resource_t7okk")])
+metadata/_edit_vertical_guides_ = [0.0, -32.0, 144.0]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Floor" parent="Walls" instance=ExtResource("2_dloae")]
+position = Vector2(500, 1800)
+scale = Vector2(8, 0.5)
+physics_material_override = SubResource("PhysicsMaterial_qdi5v")
+
+[node name="RightWall" parent="Walls" instance=ExtResource("2_dloae")]
+position = Vector2(1000, 900)
+scale = Vector2(0.5, 15)
+
+[node name="LeftWall" parent="Walls" instance=ExtResource("2_dloae")]
+position = Vector2(2.08165e-12, 900)
+scale = Vector2(0.5, 15)
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Triangle" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(501, 800)
+rotation = 3.14159
+scale = Vector2(3.4, 1)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Obstacles/Triangle"]
+scale = Vector2(123.867, 123.867)
+mesh = SubResource("PrismMesh_6231d")
+texture = SubResource("GradientTexture2D_fl5vr")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Obstacles/Triangle"]
+polygon = PackedVector2Array(-62, -62, 62, -62, 0, 62, -62, -62)
+
+[node name="Triangle2" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(812, 944)
+rotation = 3.14159
+scale = Vector2(1.64, 1)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Obstacles/Triangle2"]
+position = Vector2(-26.8291, -104)
+polygon = PackedVector2Array(-68.2925, -104, 126.829, -103.999, -68.293, 152)
+
+[node name="Polygon2D" type="Polygon2D" parent="Obstacles/Triangle2"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-95.1221, 47.9996, -95.1216, -208, 100, -208)
+
+[node name="Triangle3" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(184, 944)
+rotation = 3.14159
+scale = Vector2(-1.64, 1)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Obstacles/Triangle3"]
+position = Vector2(-26.8291, -104)
+polygon = PackedVector2Array(-68.2925, -104, 126.829, -103.999, -68.293, 152)
+
+[node name="Polygon2D" type="Polygon2D" parent="Obstacles/Triangle3"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-95.1221, 47.9996, -95.1216, -208, 100, -208)
+
+[node name="MiniCircles" type="Node2D" parent="Obstacles"]
+
+[node name="CircleObstacle" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+position = Vector2(352, 1360)
+
+[node name="CircleObstacle2" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+position = Vector2(672, 1360)
+
+[node name="CircleObstacle3" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+position = Vector2(504, 1360)
+
+[node name="CircleObstacle4" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+position = Vector2(280, 1472)
+
+[node name="CircleObstacle5" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+position = Vector2(600, 1472)
+
+[node name="CircleObstacle6" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+position = Vector2(432, 1472)
+
+[node name="CircleObstacle7" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+position = Vector2(744, 1472)
+
+[node name="Barrier" parent="." instance=ExtResource("2_dloae")]
+position = Vector2(500, 150)
+scale = Vector2(8, 0.5)
+
+[node name="Holes" type="Node2D" parent="."]
+position = Vector2(-10, 1714)
+
+[node name="Hole" parent="Holes" instance=ExtResource("5_x8m32")]
+position = Vector2(152, 3)
+
+[node name="Hole2" parent="Holes" instance=ExtResource("5_x8m32")]
+position = Vector2(272, 3)
+
+[node name="Hole3" parent="Holes" instance=ExtResource("5_x8m32")]
+position = Vector2(392, 3)
+
+[node name="Hole4" parent="Holes" instance=ExtResource("5_x8m32")]
+position = Vector2(512, 3)
+
+[node name="Hole5" parent="Holes" instance=ExtResource("5_x8m32")]
+position = Vector2(632, 3)
+
+[node name="Hole6" parent="Holes" instance=ExtResource("5_x8m32")]
+position = Vector2(752, 3)
+
+[node name="Hole7" parent="Holes" instance=ExtResource("5_x8m32")]
+position = Vector2(872, 3)
+
+[node name="Hole8" parent="Holes" instance=ExtResource("5_x8m32")]
+position = Vector2(992, 3)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Time" type="Label" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 120
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
