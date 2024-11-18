@@ -1,36 +1,38 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjvch2wr25hj1"]
+[gd_scene load_steps=15 format=3 uid="uid://do8ifpohkqiq4"]
 
-[ext_resource type="Script" path="res://Game.gd" id="1_ybg4t"]
-[ext_resource type="PackedScene" uid="uid://dv5m7ng4mqfn7" path="res://wall.tscn" id="2_dloae"]
-[ext_resource type="Script" path="res://PlayerModel.gd" id="2_ulpft"]
-[ext_resource type="PackedScene" uid="uid://drfrklb374g54" path="res://obstacles/CircleObstacle.tscn" id="4_jhk6q"]
+[ext_resource type="Script" path="res://Game.gd" id="1_7juo6"]
+[ext_resource type="Script" path="res://PlayerModel.gd" id="2_qgho7"]
+[ext_resource type="PackedScene" uid="uid://dv5m7ng4mqfn7" path="res://wall.tscn" id="3_4frhd"]
+[ext_resource type="PackedScene" uid="uid://drfrklb374g54" path="res://obstacles/CircleObstacle.tscn" id="4_wy8as"]
+[ext_resource type="PackedScene" uid="uid://dg6hrgxim2qho" path="res://obstacles/hole.tscn" id="5_otoyd"]
 
 [sub_resource type="Resource" id="Resource_nqw7d"]
-script = ExtResource("2_ulpft")
+script = ExtResource("2_qgho7")
 name = "Jose"
 color = Color(1, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_1u64c"]
-script = ExtResource("2_ulpft")
+script = ExtResource("2_qgho7")
 name = "Fio"
 color = Color(0.603825, 0.17646, 0.549045, 1)
 
 [sub_resource type="Resource" id="Resource_pswvy"]
-script = ExtResource("2_ulpft")
+script = ExtResource("2_qgho7")
 name = "Manu"
 color = Color(0.144895, 0.536499, 0.277864, 1)
 
 [sub_resource type="Resource" id="Resource_sfruq"]
-script = ExtResource("2_ulpft")
+script = ExtResource("2_qgho7")
 name = "Claudio"
 color = Color(0.863337, 0.477569, 0.0994521, 1)
 
 [sub_resource type="Resource" id="Resource_t7okk"]
-script = ExtResource("2_ulpft")
+script = ExtResource("2_qgho7")
 name = "Javi"
 color = Color(0.843681, 0.931822, 3.51793e-07, 1)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qdi5v"]
+friction = 0.0
 rough = true
 absorbent = true
 
@@ -43,27 +45,23 @@ colors = PackedColorArray(0, 0, 0, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fl5vr"]
 gradient = SubResource("Gradient_bgvcn")
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_da482"]
-a = Vector2(-288, 32)
-b = Vector2(648, 32)
-
 [node name="Game" type="Node2D"]
-script = ExtResource("1_ybg4t")
-players = Array[ExtResource("2_ulpft")]([SubResource("Resource_nqw7d"), SubResource("Resource_1u64c"), SubResource("Resource_pswvy"), SubResource("Resource_sfruq"), SubResource("Resource_t7okk")])
+script = ExtResource("1_7juo6")
+players = Array[ExtResource("2_qgho7")]([SubResource("Resource_nqw7d"), SubResource("Resource_1u64c"), SubResource("Resource_pswvy"), SubResource("Resource_sfruq"), SubResource("Resource_t7okk")])
 metadata/_edit_vertical_guides_ = [0.0, -32.0, 144.0]
 
 [node name="Walls" type="Node2D" parent="."]
 
-[node name="Floor" parent="Walls" instance=ExtResource("2_dloae")]
+[node name="Floor" parent="Walls" instance=ExtResource("3_4frhd")]
 position = Vector2(500, 1800)
 scale = Vector2(8, 0.5)
 physics_material_override = SubResource("PhysicsMaterial_qdi5v")
 
-[node name="RightWall" parent="Walls" instance=ExtResource("2_dloae")]
+[node name="RightWall" parent="Walls" instance=ExtResource("3_4frhd")]
 position = Vector2(1000, 900)
 scale = Vector2(0.5, 15)
 
-[node name="LeftWall" parent="Walls" instance=ExtResource("2_dloae")]
+[node name="LeftWall" parent="Walls" instance=ExtResource("3_4frhd")]
 position = Vector2(2.08165e-12, 900)
 scale = Vector2(0.5, 15)
 
@@ -110,30 +108,57 @@ polygon = PackedVector2Array(-95.1221, 47.9996, -95.1216, -208, 100, -208)
 
 [node name="MiniCircles" type="Node2D" parent="Obstacles"]
 
-[node name="CircleObstacle" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+[node name="CircleObstacle" parent="Obstacles/MiniCircles" instance=ExtResource("4_wy8as")]
 position = Vector2(352, 1360)
 
-[node name="CircleObstacle2" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+[node name="CircleObstacle2" parent="Obstacles/MiniCircles" instance=ExtResource("4_wy8as")]
 position = Vector2(672, 1360)
 
-[node name="CircleObstacle3" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+[node name="CircleObstacle3" parent="Obstacles/MiniCircles" instance=ExtResource("4_wy8as")]
 position = Vector2(504, 1360)
 
-[node name="CircleObstacle4" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+[node name="CircleObstacle4" parent="Obstacles/MiniCircles" instance=ExtResource("4_wy8as")]
 position = Vector2(280, 1472)
 
-[node name="CircleObstacle5" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+[node name="CircleObstacle5" parent="Obstacles/MiniCircles" instance=ExtResource("4_wy8as")]
 position = Vector2(600, 1472)
 
-[node name="CircleObstacle6" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+[node name="CircleObstacle6" parent="Obstacles/MiniCircles" instance=ExtResource("4_wy8as")]
 position = Vector2(432, 1472)
 
-[node name="CircleObstacle7" parent="Obstacles/MiniCircles" instance=ExtResource("4_jhk6q")]
+[node name="CircleObstacle7" parent="Obstacles/MiniCircles" instance=ExtResource("4_wy8as")]
 position = Vector2(744, 1472)
 
-[node name="Barrier" parent="." instance=ExtResource("2_dloae")]
+[node name="Barrier" parent="." instance=ExtResource("3_4frhd")]
 position = Vector2(500, 150)
 scale = Vector2(8, 0.5)
+
+[node name="Holes" type="Node2D" parent="."]
+position = Vector2(-10, 1714)
+
+[node name="Hole" parent="Holes" instance=ExtResource("5_otoyd")]
+position = Vector2(152, 3)
+
+[node name="Hole2" parent="Holes" instance=ExtResource("5_otoyd")]
+position = Vector2(272, 3)
+
+[node name="Hole3" parent="Holes" instance=ExtResource("5_otoyd")]
+position = Vector2(392, 3)
+
+[node name="Hole4" parent="Holes" instance=ExtResource("5_otoyd")]
+position = Vector2(512, 3)
+
+[node name="Hole5" parent="Holes" instance=ExtResource("5_otoyd")]
+position = Vector2(632, 3)
+
+[node name="Hole6" parent="Holes" instance=ExtResource("5_otoyd")]
+position = Vector2(752, 3)
+
+[node name="Hole7" parent="Holes" instance=ExtResource("5_otoyd")]
+position = Vector2(872, 3)
+
+[node name="Hole8" parent="Holes" instance=ExtResource("5_otoyd")]
+position = Vector2(992, 3)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
@@ -156,11 +181,4 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 120
 
-[node name="Finish" type="Area2D" parent="."]
-position = Vector2(320, 1736)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Finish"]
-shape = SubResource("SegmentShape2D_da482")
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="Finish" to="." method="_on_finish_body_entered"]

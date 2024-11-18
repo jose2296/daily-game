@@ -4,7 +4,7 @@ extends Node2D
 @onready var timeLabel = $UI/Time
 @onready var playersNode = $Players
 @onready var obstaclesNode = $Obstacles
-@onready var holes = $Holes
+#@onready var holes = $Holes
 
 const ballScene = preload("res://ball.tscn")
 const circleObstableRowScene = preload("res://obstacles/CircleObstablesRow.tscn")
@@ -17,6 +17,7 @@ var width = 1000
 var gapBetweenPlayers = ballSize / 3
 
 var raceResult = []
+var scores = []
 
 func _ready():
 	timeLabel.text = 'Start in %s' %time
@@ -26,18 +27,21 @@ func _ready():
 	
 	var playersWidth = (players.size() * ballSize) + ((players.size() - 1) * gapBetweenPlayers)
 	var firstPlayerPositionX = (get_viewport().size.x / 2) - (playersWidth / 2) + ballSize / 2
+	players.shuffle()
 	for index in players.size():
 		var player = players[index]
 		var positionX = firstPlayerPositionX + ((ballSize + gapBetweenPlayers) * index)
 		create_new_player(player, positionX)
-		
-	for hole in holes.get_children():
-		if hole.has_signal('playerHoled'):
-			hole.connect('playerHoled', onPlayerHole)
+		scores.append((index + 1) * 10)
+	
+	#for hole in holes.get_children():
+		#if hole.has_signal('playerHoled'):
+			#hole.connect('playerHoled', onPlayerHole)
 			
-func onPlayerHole(playerName, score):
-	print(playerName + " - " + str(score))
-	raceResult.append({"name": playerName, "score": score })
+	scores.reverse()
+			
+func onPlayerHole(playerName):
+	raceResult.append({ "name": playerName, "score": scores[raceResult.size()] })
 	
 	if raceResult.size() == players.size():
 		raceResult.reverse()
@@ -46,14 +50,11 @@ func onPlayerHole(playerName, score):
 func finish():
 	timeLabel.text = ""
 	for index in raceResult.size():
-		timeLabel.text += str(index + 1) + " - " + raceResult[index].name + "(" + str(raceResult[index].score) + ")\n"
+		timeLabel.text += str(index + 1) + " - " + raceResult[index].name + " (" + str(raceResult[index].score) + ")\n"
 	timeLabel.visible = true
-	print(raceResult)
 	
 func _process(delta):
 	if not gameStarted: return
-	
-	
 	
 func create_new_player(player: PlayerModel, positionX: int):
 	var newballInstance = ballScene.instantiate()
@@ -88,3 +89,15 @@ func _on_timer_timeout():
 		start_game()
 		
 	timeLabel.text = 'Start in %s' %time
+
+
+func _on_finish_body_entered(body):
+	if body is Player:
+		body.holed = true
+		body.set_collision_layer_value(1, false)
+		body.set_collision_layer_value(2, true)
+		body.set_collision_mask_value(1, false)
+		body.set_collision_mask_value(2, true)
+		body.sleeping = true
+		onPlayerHole(body.name)
+		#playerHoled.emit(body.name, score)
