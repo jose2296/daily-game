@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://diogmghnqfoa2"]
 
-[ext_resource type="Script" path="res://ball.gd" id="1_fb8kt"]
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1_xot56"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_023dc"]
 bounce = 0.5
@@ -19,7 +19,7 @@ gradient = SubResource("Gradient_loed7")
 
 [node name="Ball" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_023dc")
-script = ExtResource("1_fb8kt")
+script = ExtResource("1_xot56")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)

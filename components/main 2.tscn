@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://do8ifpohkqiq4"]
 
-[ext_resource type="Script" path="res://Game.gd" id="1_7juo6"]
-[ext_resource type="Script" path="res://PlayerModel.gd" id="2_qgho7"]
-[ext_resource type="PackedScene" uid="uid://dv5m7ng4mqfn7" path="res://wall.tscn" id="3_4frhd"]
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_7juo6"]
+[ext_resource type="Script" path="res://scripts/PlayerModel.gd" id="2_qgho7"]
+[ext_resource type="PackedScene" uid="uid://dv5m7ng4mqfn7" path="res://components/wall.tscn" id="3_4frhd"]
 [ext_resource type="PackedScene" uid="uid://drfrklb374g54" path="res://obstacles/CircleObstacle.tscn" id="4_wy8as"]
 [ext_resource type="PackedScene" uid="uid://dg6hrgxim2qho" path="res://obstacles/hole.tscn" id="5_otoyd"]
 

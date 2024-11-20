@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dg6hrgxim2qho"]
 
-[ext_resource type="PackedScene" uid="uid://dv5m7ng4mqfn7" path="res://wall.tscn" id="1_gcbte"]
+[ext_resource type="PackedScene" uid="uid://dv5m7ng4mqfn7" path="res://components/wall.tscn" id="1_gcbte"]
 [ext_resource type="Script" path="res://obstacles/hole.gd" id="1_gj623"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gknr4"]

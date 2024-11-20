@@ -8,6 +8,7 @@ extends RigidBody2D
 
 var holed = false
 var started = false
+var playerName = ''
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
